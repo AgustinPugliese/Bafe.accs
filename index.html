@@ -1,0 +1,1206 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bafe.accs — Accesorios</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="anuncio">
+    ✦ &nbsp; Envíos a todo el país &nbsp; ✦ &nbsp; Transferencia · Mercado Pago · Efectivo &nbsp; ✦
+  </div>
+
+  <nav class="navbar">
+    <span class="logo">Bafe.accs</span>
+    <ul class="nav-links">
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#info">Envíos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-icons">
+      <span title="Buscar">⌕</span>
+      <span title="Favoritos">♡</span>
+      <span class="carrito-icon" onclick="toggleCarrito()" title="Carrito">
+        🛒 <span class="carrito-badge" id="carrito-badge">0</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="carrito-overlay" id="carrito-overlay" onclick="toggleCarrito()"></div>
+  <div class="carrito-panel" id="carrito-panel">
+    <div class="carrito-header">
+      <h3>Tu carrito</h3>
+      <button onclick="toggleCarrito()" class="carrito-cerrar">✕</button>
+    </div>
+    <div class="carrito-items" id="carrito-items">
+      <p class="carrito-vacio">Tu carrito está vacío 🛒</p>
+    </div>
+    <div class="carrito-footer" id="carrito-footer" style="display:none">
+      <div class="carrito-client-form">
+        <label>Nombre:</label>
+        <input id="cliente-nombre" type="text" placeholder="Tu nombre" />
+        <label>Código postal:</label>
+        <input id="cliente-postal" type="text" placeholder="1000" maxlength="8" />
+        <label>Medio de pago:</label>
+        <select id="cliente-pago">
+          <option value="">Seleccionar...</option>
+          <option value="Transferencia">Transferencia bancaria</option>
+          <option value="Mercado Pago">Mercado Pago</option>
+          <option value="Efectivo">Efectivo</option>
+        </select>
+      </div>
+      <div class="carrito-total">
+        <span>Total:</span>
+        <span id="carrito-total">$0</span>
+      </div>
+      <button class="btn-wsp" onclick="pedirPorWhatsapp()">💬 Pedir por WhatsApp</button>
+      <button class="btn-ig" onclick="pedirPorInstagram()">📸 Pedir por Instagram</button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox-overlay" onclick="cerrarLightbox()">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <button class="lightbox-prev" onclick="navLightbox(event,-1)">&#10094;</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Producto" />
+      <div class="lightbox-dots" id="lightbox-dots"></div>
+    </div>
+    <button class="lightbox-next" onclick="navLightbox(event,1)">&#10095;</button>
+  </div>
+
+  <section class="hero">
+    <img src="Imagenes/hero.jpg" alt="No importa lo que digan, si te gusta úsalo" />
+    <div class="hero-cta-wrap">
+      <a href="#catalogo" class="hero-cta">Ver colección</a>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-track">
+      <span class="strip-item">✦ Anillos</span>
+      <span class="strip-item">✦ Collares</span>
+      <span class="strip-item">✦ Aros</span>
+      <span class="strip-item">✦ Carteras &amp; Cintos</span>
+      <span class="strip-item">✦ Accesorios para Pelo</span>
+      <span class="strip-item">✦ Anillos</span>
+      <span class="strip-item">✦ Collares</span>
+      <span class="strip-item">✦ Aros</span>
+      <span class="strip-item">✦ Carteras &amp; Cintos</span>
+      <span class="strip-item">✦ Accesorios para Pelo</span>
+    </div>
+  </div>
+
+  <section id="catalogo" class="catalogo">
+    <div class="catalogo-header">
+      <div>
+        <p class="catalogo-eyebrow">✦ &nbsp; Nueva colección 2026</p>
+        <h2 class="sec-titulo">Catálogo</h2>
+      </div>
+      <a href="#contacto" class="ver-todo">Ver todo →</a>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('todos', this)">Todos</button>
+      <button class="tab-btn" onclick="showTab('anillos', this)">Anillos</button>
+      <button class="tab-btn" onclick="showTab('collares', this)">Collares</button>
+      <button class="tab-btn" onclick="showTab('aros', this)">Aros</button>
+      <button class="tab-btn" onclick="showTab('cintos', this)">Carteras &amp; Cintos</button>
+      <button class="tab-btn" onclick="showTab('pelo', this)">Accesorios para Pelo</button>
+    </div>
+
+    <!-- ══════════════════ TAB: TODOS ══════════════════ -->
+    <div class="tab-panel active" id="tab-todos">
+      <div class="productos-grid">
+
+        <div class="producto-card" data-nombre="Anillos Chunky" data-precio="4000" data-categoria="anillos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/anillos chunky 1.jpeg","Imagenes/anillos chunky 2.jpeg","Imagenes/anillos chunky 3.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/anillos chunky 1.jpeg" alt="Anillos Chunky" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Anillos</p>
+            <p class="prod-nombre">Anillos Chunky</p>
+            <p class="prod-stock" data-stock="12">Stock: <strong>12</strong> disponibles</p>
+            <p class="prod-precio">$3.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Anillos Urban" data-precio="2500" data-categoria="anillos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/anillos Urban.jpeg","Imagenes/anillos Urban 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/anillos Urban.jpeg" alt="Anillos Urban" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Anillos</p>
+            <p class="prod-nombre">Anillos Urban</p>
+            <p class="prod-stock" data-stock="17">Stock: <strong>17</strong> disponibles</p>
+            <p class="prod-precio">$2.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar Chokers" data-precio="4000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar 1.jpeg","Imagenes/collar 2.jpeg","Imagenes/collar 3.jpeg","Imagenes/collar 4.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar 1.jpeg" alt="Collar Chokers" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span><span class="img-dot"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Chokers</p>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$5.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar Cupido" data-precio="7000" data-categoria="collares">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/collar cupido.jpeg"]'>
+            <img src="Imagenes/collar cupido.jpeg" alt="Collar Cupido" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Cupido</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$8.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar RockStar" data-precio="6000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar rockstar.jpeg","Imagenes/collar rockstar_2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar rockstar.jpeg" alt="Collar RockStar" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar RockStar</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$6.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar Heart" data-precio="6000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar heart.jpeg","Imagenes/collar heart 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar heart.jpeg" alt="Collar Heart" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Heart</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$6.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Aros Chapita" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros chapita.jpeg"]'>
+            <img src="Imagenes/aros chapita.jpeg" alt="Aros Chapita" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Chapita</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Aros Cruz Gótica" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros cruz gotica.jpeg"]'>
+            <img src="Imagenes/aros cruz gotica.jpeg" alt="Aros Cruz Gótica" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cruz Gótica</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Aros Cruz Negra" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros cruz negra.jpeg"]'>
+            <img src="Imagenes/aros cruz negra.jpeg" alt="Aros Cruz Negra" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cruz Negra</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Aros Stars" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros stars.jpeg"]'>
+            <img src="Imagenes/aros stars.jpeg" alt="Aros Stars" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Stars</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$4.200</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Aros Moon" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros moon.jpeg"]'>
+            <img src="Imagenes/aros moon.jpeg" alt="Aros Moon" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Moon</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cinto Tachitas" data-precio="15500" data-categoria="cintos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/cinto1.jpg","Imagenes/cinto1_2.jpg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/cinto1.jpg" alt="Cinto Tachitas" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Cintos</p>
+            <p class="prod-nombre">Cinto Tachitas</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#1a1a1a" title="Negro"></span>
+              <span class="color-dot" style="background:#fff;border:1px solid #ddd" title="Blanco"></span>
+              <span class="color-dot" style="background:#7B3F00" title="Marrón"></span>
+              <span class="color-dot" style="background:#8B0000" title="Bordó"></span>
+            </div>
+            <p class="prod-stock" data-stock="4">Stock: <strong>4</strong> disponibles</p>
+            <p class="prod-precio">$15.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Glam" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera glam 1.jpg"]'>
+            <img src="Imagenes/cartera glam 1.jpg" alt="Cartera Glam" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Glam</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$32.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Broche Peluche Glam" data-precio="0" data-categoria="pelo">
+
+  <!-- IMAGEN -->
+  <div class="prod-img-wrap multi-img" 
+       data-images='["Imagenes/broche para pelo (peluche).jpeg"]'
+       data-current="0" 
+       onclick="abrirLightbox(this)">
+
+    <img class="prod-img-main" src="Imagenes/broche para pelo (peluche).jpeg" alt="Broche Peluche Glam" />
+
+    <span class="prod-badge">Nuevo</span>
+    <span class="prod-fav">♡</span>
+  </div>
+
+  <!-- INFO -->
+  <div class="prod-info">
+    <p class="prod-cat">Accesorios para Pelo</p>
+    <p class="prod-nombre">Broche Peluche Glam</p>
+
+    <!-- ✅ COLORES AHORA ESTÁN BIEN UBICADOS -->
+    <div class="prod-colores">
+      <span class="color-dot" style="background:#FFFFFF" title="Blanco"></span>
+      <span class="color-dot" style="background:#000000" title="Negro"></span>
+      <span class="color-dot" style="background:#F8C8DC" title="Rosa"></span>
+      <span class="color-dot" style="background:#808080" title="Gris"></span>
+      <span class="color-dot" style="background:#FFF1B5" title="Color manteca"></span>
+    </div>
+
+    <p class="prod-stock" data-stock="4">Stock: <strong>4</strong> disponibles</p>
+    <p class="prod-precio">$2.000</p>
+
+    <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+  </div>
+
+</div>
+
+        <div class="producto-card" data-nombre="Neceser Corazones" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/neceser (corazon)1.jpeg","Imagenes/neceser (corazon) 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/neceser (corazon)1.jpeg" alt="Neceser Corazones" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Neceser Corazones</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$13.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════ TAB: ANILLOS ══════════════════ -->
+    <div class="tab-panel" id="tab-anillos">
+      <div class="productos-grid">
+
+        <div class="producto-card" data-nombre="Anillos Chunky" data-precio="4000" data-categoria="anillos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/anillos chunky 1.jpeg","Imagenes/anillos chunky 2.jpeg","Imagenes/anillos chunky 3.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/anillos chunky 1.jpeg" alt="Anillos Chunky" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Anillos</p>
+            <p class="prod-nombre">Anillos Chunky</p>
+            <p class="prod-stock" data-stock="12">Stock: <strong>12</strong> disponibles</p>
+            <p class="prod-precio">$3.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Anillos Urban" data-precio="2500" data-categoria="anillos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/anillos Urban.jpeg","Imagenes/anillos Urban 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/anillos Urban.jpeg" alt="Anillos Urban" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Anillos</p>
+            <p class="prod-nombre">Anillos Urban</p>
+            <p class="prod-stock" data-stock="17">Stock: <strong>17</strong> disponibles</p>
+            <p class="prod-precio">$2.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════ TAB: COLLARES ══════════════════ -->
+    <div class="tab-panel" id="tab-collares">
+      <div class="productos-grid">
+
+        <div class="producto-card" data-nombre="Collar Chokers" data-precio="4000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar 1.jpeg","Imagenes/collar 2.jpeg","Imagenes/collar 3.jpeg","Imagenes/collar 4.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar 1.jpeg" alt="Collar Chokers" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span><span class="img-dot"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Chokers</p>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$5.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar Cupido" data-precio="7000" data-categoria="collares">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/collar cupido.jpeg"]'>
+            <img src="Imagenes/collar cupido.jpeg" alt="Collar Cupido" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Cupido</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$8.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar RockStar" data-precio="6000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar rockstar.jpeg","Imagenes/collar rockstar_2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar rockstar.jpeg" alt="Collar RockStar" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar RockStar</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$6.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Collar Heart" data-precio="6000" data-categoria="collares">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/collar heart.jpeg","Imagenes/collar heart 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/collar heart.jpeg" alt="Collar Heart" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Collares</p>
+            <p class="prod-nombre">Collar Heart</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$6.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════ TAB: AROS ══════════════════ -->
+    <div class="tab-panel" id="tab-aros">
+      <div class="productos-grid">
+
+        <!-- 1 foto → Imagenes/aritos dorados.jpeg -->
+        <div class="producto-card" data-nombre="Aritos Sol Dorados" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aritos dorados.jpeg"]'>
+            <img src="Imagenes/aritos dorados.jpeg" alt="Aritos Sol Dorados" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aritos Sol Dorados</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$4.200</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aritos plateados.jpeg -->
+        <div class="producto-card" data-nombre="Aritos Sol Plateados" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aritos plateados.jpeg"]'>
+            <img src="Imagenes/aritos plateados.jpeg" alt="Aritos Sol Plateados" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aritos Sol Plateados</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$4.200</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 2 fotos reales -->
+      <div class="producto-card" data-nombre="Aritos Cadena Dorados" data-precio="0" data-categoria="aros">
+       <div class="prod-img-wrap" data-images='["Imagenes/aritos cadena (dorados).jpeg"]' onclick="abrirLightbox(this)">
+         <img src="Imagenes/aritos cadena (dorados).jpeg" alt="Aritos Cadena Dorados" />
+         <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+           <p class="prod-cat">Aros</p>
+           <p class="prod-nombre">Aritos Cadena Dorados</p>
+           <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$4.500</p>
+           <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+         </div>
+       </div>
+
+        <!-- 2 fotos: foto plateados + foto dorado/plateado juntos -->
+        <!-- NOMBRE CORRECTO: Imagenes/airtos cadena (plateados).jpeg -->
+        <div class="producto-card" data-nombre="Aritos Cadena Plateados" data-precio="0" data-categoria="aros">
+       <div class="prod-img-wrap" data-images='["Imagenes/aritos cadena (plateados).jpeg"]' onclick="abrirLightbox(this)">
+         <img src="Imagenes/aritos cadena (plateados).jpeg" alt="Aritos Cadena Plateados" />
+         <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aritos Cadena Plateados</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$4.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aritos estrellas.jpeg -->
+        <div class="producto-card" data-nombre="Aritos Estrella Cristal" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aritos estrellas.jpeg"]'>
+            <img src="Imagenes/aritos estrellas.jpeg" alt="Aritos Estrella Cristal" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aritos Estrella Cristal</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$5.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 fotos reales -->
+        <div class="producto-card" data-nombre="Aros cuff plateados" data-precio="0" data-categoria="aros">
+       <div class="prod-img-wrap" data-images='["Imagenes/Aros cuff plateados.jpeg"]' onclick="abrirLightbox(this)">
+         <img src="Imagenes/Aros cuff plateados.jpeg" alt="Aros Cuff Plateados" />
+         <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cuff Plateados</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$7.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 2 fotos reales -->
+       <div class="producto-card" data-nombre="Aros cuff Dorados" data-precio="0" data-categoria="aros">
+       <div class="prod-img-wrap" data-images='["Imagenes/Aros cuff dorados.jpeg"]' onclick="abrirLightbox(this)">
+         <img src="Imagenes/Aros cuff dorados.jpeg" alt="Aros Cuff Dorados" />
+         <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cuff Dorados</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$7.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 2 fotos reales -->
+        <div class="producto-card" data-nombre="Aros Argolla Dorados" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/aros dorados 1.jpeg","Imagenes/aros dorados 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/aros dorados 1.jpeg" alt="Aros Argolla Dorados" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Argolla Dorados</p>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$9.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 2 fotos reales → Imagenes/aros plateados 1.jpeg + aros plateados 2.jpeg -->
+        <div class="producto-card" data-nombre="Aros Argolla Plateados" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/aros plateados 1.jpeg","Imagenes/aros plateados 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/aros plateados 1.jpeg" alt="Aros Argolla Plateados" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Argolla Plateados</p>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$9.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aros chapita.jpeg -->
+        <div class="producto-card" data-nombre="Aros Chapita" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros chapita.jpeg"]'>
+            <img src="Imagenes/aros chapita.jpeg" alt="Aros Chapita" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Chapita</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aros cruz gotica.jpeg -->
+        <div class="producto-card" data-nombre="Aros Cruz Gótica" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros cruz gotica.jpeg"]'>
+            <img src="Imagenes/aros cruz gotica.jpeg" alt="Aros Cruz Gótica" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cruz Gótica</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aros cruz negra.jpeg -->
+        <div class="producto-card" data-nombre="Aros Cruz Negra" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros cruz negra.jpeg"]'>
+            <img src="Imagenes/aros cruz negra.jpeg" alt="Aros Cruz Negra" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Cruz Negra</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$7.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aros stars.jpeg -->
+        <div class="producto-card" data-nombre="Aros Stars" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros stars.jpeg"]'>
+            <img src="Imagenes/aros stars.jpeg" alt="Aros Stars" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Stars</p>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$4.200</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- 1 foto → Imagenes/aros moon.jpeg -->
+        <div class="producto-card" data-nombre="Aros Moon" data-precio="0" data-categoria="aros">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/aros moon.jpeg"]'>
+            <img src="Imagenes/aros moon.jpeg" alt="Aros Moon" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Aros</p>
+            <p class="prod-nombre">Aros Moon</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$5.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════ TAB: CINTOS ══════════════════ -->
+    <div class="tab-panel" id="tab-cintos">
+      <div class="productos-grid">
+
+        <div class="producto-card" data-nombre="Cinto Tachitas" data-precio="15500" data-categoria="cintos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/cinto1.jpg","Imagenes/cinto1_2.jpg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/cinto1.jpg" alt="Cinto Tachitas" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Cintos</p>
+            <p class="prod-nombre">Cinto Tachitas</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#1a1a1a" title="Negro"></span>
+              <span class="color-dot" style="background:#fff;border:1px solid #ddd" title="Blanco"></span>
+              <span class="color-dot" style="background:#7B3F00" title="Marrón"></span>
+              <span class="color-dot" style="background:#8B0000" title="Bordó"></span>
+            </div>
+            <p class="prod-stock" data-stock="4">Stock: <strong>4</strong> disponibles</p>
+            <p class="prod-precio">$11.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cinto Animal Print" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/cinto2.jpg","Imagenes/cinto2_2.jpg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/cinto2.jpg" alt="Cinto Animal Print" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Cintos</p>
+            <p class="prod-nombre">Cinto Animal Print</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#8B6914" title="Marrón"></span>
+              <span class="color-dot" style="background:#1a1a1a" title="Negro"></span>
+            </div>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$12.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cinto Gamuza" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/cinto3.jpg","Imagenes/cinto3_2.jpg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/cinto3.jpg" alt="Cinto Gamuza" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Cintos</p>
+            <p class="prod-nombre">Cinto Gamuza</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#1a1a1a" title="Negro gamuza"></span>
+              <span class="color-dot" style="background:#7B3F00" title="Marrón gamuza"></span>
+            </div>
+            <p class="prod-stock" data-stock="2">Stock: <strong>2</strong> disponibles</p>
+            <p class="prod-precio">$13.600</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Glam" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera glam 1.jpg"]'>
+            <img src="Imagenes/cartera glam 1.jpg" alt="Cartera Glam" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Glam</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$32.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Luna" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera luna 1.jpg"]'>
+            <img src="Imagenes/cartera luna 1.jpg" alt="Cartera Luna" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Luna</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$40.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Golden" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera golden 1.jpg"]'>
+            <img src="Imagenes/cartera golden 1.jpg" alt="Cartera Golden" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Golden</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$45.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Isa" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera isa 1.jpg"]'>
+            <img src="Imagenes/cartera isa 1.jpg" alt="Cartera Isa" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Isa</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$20.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Cartera Sunny" data-precio="0" data-categoria="cintos">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/cartera sunny 1.jpg"]'>
+            <img src="Imagenes/cartera sunny 1.jpg" alt="Cartera Sunny" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Carteras</p>
+            <p class="prod-nombre">Cartera Sunny</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$23.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════ TAB: PELO ══════════════════ -->
+    <div class="tab-panel" id="tab-pelo">
+      <div class="productos-grid">
+
+        <!-- Broche Peluche Glam: 2 fotos → broche para pelo (peluche).jpeg + broche para pelo 2.jpeg -->
+        <div class="producto-card" data-nombre="Broche Peluche Glam" data-precio="0" data-categoria="pelo">
+
+  <!-- IMAGEN -->
+  <div class="prod-img-wrap multi-img" 
+       data-images='["Imagenes/broche para pelo (peluche).jpeg"]'
+       data-current="0" 
+       onclick="abrirLightbox(this)">
+
+    <img class="prod-img-main" src="Imagenes/broche para pelo (peluche).jpeg" alt="Broche Peluche Glam" />
+
+    <span class="prod-badge">Nuevo</span>
+    <span class="prod-fav">♡</span>
+  </div>
+
+  <!-- INFO -->
+  <div class="prod-info">
+    <p class="prod-cat">Accesorios para Pelo</p>
+    <p class="prod-nombre">Broche Peluche Glam</p>
+
+    <!-- ✅ COLORES AHORA ESTÁN BIEN UBICADOS -->
+    <div class="prod-colores">
+      <span class="color-dot" style="background:#FFFFFF" title="Blanco"></span>
+      <span class="color-dot" style="background:#000000" title="Negro"></span>
+      <span class="color-dot" style="background:#F8C8DC" title="Rosa"></span>
+      <span class="color-dot" style="background:#808080" title="Gris"></span>
+      <span class="color-dot" style="background:#FFF1B5" title="Color manteca"></span>
+    </div>
+
+    <p class="prod-stock" data-stock="6">Stock: <strong>6</strong> disponibles</p>
+    <p class="prod-precio">$2.000</p>
+
+    <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+  </div>
+
+</div>
+
+        <!-- Broches Golden: 2 fotos → Imagenes/broche golden 1.jpeg + broche golden 2.jpeg -->
+        <div class="producto-card" data-nombre="Broche Golden" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/broche golden 1.jpeg","Imagenes/broche golden 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/broche golden 1.jpeg" alt="Broche Golden" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Broche Golden</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#d4a017" title="Dorado"></span>
+              <span class="color-dot" style="background:#c0c0c0" title="Plateado"></span>
+            </div>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$9.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+  
+        <div class="producto-card" data-nombre="Broche silver" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/broche silver 1.jpeg","Imagenes/broche silver 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/broche silver 1.jpeg" alt="Broche Silver" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Broche Silver</p>
+            <div class="prod-colores">
+              <span class="color-dot" style="background:#c0c0c0" title="Dorado"></span>
+              <span class="color-dot" style="background:#000000" title="Plateado"></span>
+            </div>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$9.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- Scrunchie con Brillo: 1 foto → Imagenes/scrunchie brillo.jpeg -->
+        <div class="producto-card" data-nombre="Scrunchie con Brillo" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/scrunchie brillo.jpeg"]'>
+            <img src="Imagenes/scrunchie brillo.jpeg" alt="Scrunchie con Brillo" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Scrunchie con Brillo</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$2.800</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card" data-nombre="Hebillas clasicas" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/hebillas clasicas.jpeg"]'>
+            <img src="Imagenes/hebillas clasicas.jpeg" alt="Hebillas clasicas" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Hebillas clasicas</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">Consultá precio</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- Hebilla Heart Black: 1 foto → Imagenes/hebilla heart black.jpeg -->
+        <div class="producto-card" data-nombre="Hebilla francesa Heart" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap" onclick="abrirLightbox(this)" data-images='["Imagenes/hebilla francesa heart.jpeg"]'>
+            <img src="Imagenes/hebilla francesa heart.jpeg" alt="Hebilla Heart Black" />
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Hebilla francesa heart</p>
+            <p class="prod-stock" data-stock="3">Stock: <strong>3</strong> disponibles</p>
+            <p class="prod-precio">$4.000</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- Neceser Corazones: 2 fotos reales -->
+        <div class="producto-card" data-nombre="Neceser Corazones" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/neceser (corazon)1.jpeg","Imagenes/neceser (corazon) 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/neceser (corazon)1.jpeg" alt="Neceser Corazones" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Neceser Corazones</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$13.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+        <!-- Neceser Print: 2 fotos reales -->
+        <div class="producto-card" data-nombre="Neceser Print" data-precio="0" data-categoria="pelo">
+          <div class="prod-img-wrap multi-img" data-images='["Imagenes/neceser print 1.jpeg","Imagenes/neceser print 2.jpeg"]' data-current="0" onclick="abrirLightbox(this)">
+            <img class="prod-img-main" src="Imagenes/neceser print 1.jpeg" alt="Neceser Print" />
+            <button class="img-nav-btn img-prev" onclick="imgNav(event,this,-1)">&#10094;</button>
+            <button class="img-nav-btn img-next" onclick="imgNav(event,this,1)">&#10095;</button>
+            <div class="img-dots"><span class="img-dot active"></span><span class="img-dot"></span></div>
+            <span class="prod-badge">Nuevo</span><span class="prod-fav">♡</span>
+          </div>
+          <div class="prod-info">
+            <p class="prod-cat">Accesorios para Pelo</p>
+            <p class="prod-nombre">Neceser Print</p>
+            <p class="prod-stock" data-stock="1">Stock: <strong>1</strong> disponibles</p>
+            <p class="prod-precio">$13.500</p>
+            <button class="btn-agregar" onclick="agregarAlCarrito(this)">+ Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EDITORIAL — carrusel con todas las fotos de productos rotando cada 3 seg -->
+  <section class="editorial">
+    <div class="editorial-carrusel">
+      <div class="carrusel-container">
+        <div class="carrusel-slide active"><img src="Imagenes/cinto1.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/collar 1.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/aritos cadena (dorados).jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cinto2.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/collar heart.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/neceser (corazon)1.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cinto3.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/collar rockstar.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/aros cuff plateados.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cartera isa 1.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cartera golden 1.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cartera luna 1.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/cartera glam 1.jpg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/scrunchie brillo.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/hebilla francesa heart.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/hebillas clasicas.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/broche silver 1.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/broche golden 1.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/broche para pelo (peluche).jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/aros moon.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/aros stars.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/aros cruz negra.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/collar rockstar.jpeg" alt="Bafe.accs" /></div>
+        <div class="carrusel-slide"><img src="Imagenes/collar heart.jpeg" alt="Bafe.accs" /></div>
+      </div>
+      </div>
+      <button class="carrusel-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
+      <button class="carrusel-btn next" onclick="cambiarSlide(1)">&#10095;</button>
+      <div class="carrusel-dots">
+        <span class="carrusel-dot active" onclick="irASlide(0)"></span>
+        <span class="carrusel-dot" onclick="irASlide(1)"></span>
+        <span class="carrusel-dot" onclick="irASlide(2)"></span>
+        <span class="carrusel-dot" onclick="irASlide(3)"></span>
+        <span class="carrusel-dot" onclick="irASlide(4)"></span>
+        <span class="carrusel-dot" onclick="irASlide(5)"></span>
+        <span class="carrusel-dot" onclick="irASlide(6)"></span>
+        <span class="carrusel-dot" onclick="irASlide(7)"></span>
+        <span class="carrusel-dot" onclick="irASlide(8)"></span>
+        <span class="carrusel-dot" onclick="irASlide(9)"></span>
+        <span class="carrusel-dot" onclick="irASlide(10)"></span>
+        <span class="carrusel-dot" onclick="irASlide(11)"></span>
+        <span class="carrusel-dot" onclick="irASlide(12)"></span>
+        <span class="carrusel-dot" onclick="irASlide(13)"></span>
+        <span class="carrusel-dot" onclick="irASlide(14)"></span>
+        <span class="carrusel-dot" onclick="irASlide(15)"></span>
+        <span class="carrusel-dot" onclick="irASlide(16)"></span>
+        <span class="carrusel-dot" onclick="irASlide(17)"></span>
+        <span class="carrusel-dot" onclick="irASlide(18)"></span>
+        <span class="carrusel-dot" onclick="irASlide(19)"></span>
+        <span class="carrusel-dot" onclick="irASlide(20)"></span>
+        <span class="carrusel-dot" onclick="irASlide(21)"></span>
+        <span class="carrusel-dot" onclick="irASlide(22)"></span>
+        <span class="carrusel-dot" onclick="irASlide(23)"></span>
+        <span class="carrusel-dot" onclick="irASlide(24)"></span>
+      </div>
+    </div>
+
+
+
+
+    <div class="editorial-texto">
+      <p class="editorial-eyebrow">✦ &nbsp; Nueva colección 2026</p>
+      <h2 class="editorial-titulo">Accesorios únicos<br />para vos.</h2>
+      <p class="editorial-parrafo">
+        Cada pieza es seleccionada con amor para mujeres que se animan a brillar con su propio estilo. No importa lo que digan, si te gusta, úsalo.
+      </p>
+      <a href="#contacto" class="btn-bordo">Consultanos</a>
+    </div>
+  </section>
+
+  <div class="banner">
+    <div class="banner-texto">
+      <h2>¿Querés hacer<br />un pedido?</h2>
+      <p>Escribinos por Instagram o WhatsApp y te respondemos enseguida. Envíos a todo el país.</p>
+    </div>
+    <div class="banner-btns">
+      <a href="https://instagram.com/bafe.accs" target="_blank" rel="noopener noreferrer" class="btn-outline">📸 @Bafe.accs</a>
+      <a href="https://wa.me/5491124012946" target="_blank" rel="noopener noreferrer" class="btn-outline btn-wsp-banner">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <div id="info" class="info-strip">
+    <div class="info-item">
+      <div class="info-icono">🚚</div>
+      <div class="info-item-titulo">Envíos a todo el país</div>
+      <div class="info-item-texto">Mandamos a cualquier punto de Argentina rápido y seguro.</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icono">💳</div>
+      <div class="info-item-titulo">Medios de pago</div>
+      <div class="info-item-texto">Transferencia bancaria, Mercado Pago y efectivo sin recargo.</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icono">💖</div>
+      <div class="info-item-titulo">Hecho con amor</div>
+      <div class="info-item-texto">Cada accesorio es elegido con cuidado para que te sientas única.</div>
+    </div>
+  </div>
+
+  <section id="contacto" class="contacto">
+    <p class="contacto-eyebrow">Contacto</p>
+    <h2 class="contacto-titulo">Hablemos 💖</h2>
+    <p class="contacto-texto">
+      Escribinos por Instagram o WhatsApp y te respondemos enseguida.<br />
+      Consultanos por cualquier producto o pedido especial.
+    </p>
+    <div class="contacto-envio">
+      <label for="postal">Calculá tu costo de envío (Correo Argentino)</label>
+      <div class="input-envio">
+        <input id="postal" type="text" placeholder="Ej. 1000" maxlength="8" />
+        <button class="btn-bordo btn-envio" type="button" onclick="calcularEnvio()">Calcular envío</button>
+      </div>
+      <p class="envio-result" id="envio-result">Ingresá tu código postal para ver el costo estimado de envío.</p>
+    </div>
+    <div class="contacto-btns">
+      <a href="https://instagram.com/bafe.accs" target="_blank" rel="noopener noreferrer" class="btn-bordo">📸 Instagram</a>
+      <a href="https://wa.me/5491124012946" target="_blank" rel="noopener noreferrer" class="btn-bordo btn-verde">💬 WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo-text">Bafe.accs</span>
+        <p>Accesorios únicos para mujeres que se animan a brillar con su propio estilo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Colección</h4>
+        <ul>
+          <li><a href="#catalogo">Anillos</a></li>
+          <li><a href="#catalogo">Collares</a></li>
+          <li><a href="#catalogo">Aros</a></li>
+          <li><a href="#catalogo">Carteras y cintos</a></li>
+          <li><a href="#catalogo">Accesorios para Pelo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#info">Sobre nosotras</a></li>
+          <li><a href="#info">Envíos</a></li>
+          <li><a href="#contacto">Cómo comprar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://instagram.com/bafe.accs" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/5491124012946" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bafe.accs — Hecho con amor 💖</span>
+      <span>Transferencia · Mercado Pago · Efectivo</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+<script>
+function pedirPorInstagram(btn) {
+  const card = btn.closest(".producto-card");
+  const nombre = card.dataset.nombre;
+
+  const mensaje = `Hola! Quiero este producto de Bafe.accs: ${nombre}`;
+  
+  navigator.clipboard.writeText(mensaje);
+  window.open("https://instagram.com/Bafe.accs", "_blank");
+}
+</script>
+</body>
+</html>
